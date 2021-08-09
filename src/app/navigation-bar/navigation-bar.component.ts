@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afAuth:AngularFireAuth) {
+    afAuth.authState.subscribe((state) => {console.log(state)})
+  }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+ this.afAuth.signOut();
   }
 
 }
